@@ -6,10 +6,10 @@ const debug = true
 const Hash = {max: 0, 0: 0, 1: 1}
 
 // Testing
-// console.log(fiboWhile(1))
-// console.log(fiboWhile(2))
-// console.log(fiboWhile(3))
-// console.log(fiboWhile(6))
+// console.log(fiboFor(1))
+// console.log(fiboFor(2))
+// console.log(fiboFor(3))
+// console.log(fiboFor(6))
 
 // fiboStopwatch(10)
 
@@ -20,9 +20,11 @@ async function test() {
 // test()
 
 async function testFind() {
-    await fiboWhile(10)
-    console.log(fiboFind(8))
-    console.log(fiboFind(55))
+    await fiboFor(10)
+    console.log(await fiboPosFind(8))
+    console.log(await fiboPosFind(55))
+    console.log(await fiboPosFind(0))
+    console.log(await fiboPosFind(1))
 }
 testFind()
 
@@ -32,10 +34,10 @@ testFind()
 
 
 // Functions
-async function fiboWhile(position) {
+async function fiboFor(position) {
     const hash = Hash || {max: 1, 0: 0, 1: 1}
     const safePosition = Number(position)
-    if (safePosition) {
+    if (higherTruth(safePosition)) {
         const working = Math.max(0, safePosition)
         if (working <= hash.max) {
             return hash[working]
@@ -59,7 +61,7 @@ async function fiboWhile(position) {
 
 function fiboIsIt(value) {
     const safeValue = Number(value)
-    if (safeValue) {
+    if (higherTruth(safeValue)) {
         const coreValue = 5 * safeValue * safeValue
         if (fiboMath(coreValue)) {
             return `${safeValue} is a Fibonacci number`
@@ -71,19 +73,25 @@ function fiboIsIt(value) {
     }
 }
 
-function fiboPosFind(toFind) {
+async function fiboPosFind(toFind) {
     const hash = Hash || {max: 1, 0: 0, 1: 1}
     const safeToFind = Number(toFind)
 
-    if (safeToFind && fiboMath(5 * safeToFind * safeToFind)) {
+    if (higherTruth(safeToFind) && fiboMath(5 * safeToFind * safeToFind)) {
         if (safeToFind === 1) {
             return 'Your number is 1, which is both position 1 and 2'
         } else if (safeToFind === hash[(hash.max)]) {
             return `Your number is position : ${hash.max}`
         } else {
-            return 'find logic goes here'
+            let i = 0
+            let curr = 0
+            while (curr !== safeToFind) {
+                curr = await fiboFor(i)
+                i++
+            }
+            return `Your number is position : ${i}`
         }
-    } else if (safeToFind) {
+    } else if (higherTruth(safeToFind)) {
         return `${safeToFind} is not a Fibonacci number`
     } else {
         return `${toFind} is not a valid submission`
@@ -97,12 +105,15 @@ function fiboMath(value) {
 async function fiboStopwatch(rounds) {
     console.log(`Difficulty : ${rounds}`)
     const start = Date.now()
-    const result = await fiboWhile(rounds)
+    const result = await fiboFor(rounds)
     const end = Date.now()
     console.log(`Result : ${result}`)
     console.log(`Duration : ${end - start}`)
 }
 
+function higherTruth(value) {
+    return value === 0 || !!value
+}
 
 function dead() {
 
