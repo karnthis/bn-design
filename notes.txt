@@ -21,6 +21,8 @@
 5. Cleaned up draft work, moving to web app creation
 
 == Web app ==
+1. Core functions file index.js moved to /orig dir to preserve it for easy reference/copypasta
+2. Vue 2 scaffold created because Vuetify still does not support Vue 3
 
 
 
