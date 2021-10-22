@@ -18,6 +18,10 @@
 2. Researched methods of identifying fibonacci numbers
 3. Implemented a couple of methods and helper methods to support planned functionality
 4. Realized logic had overlooked that 0 was a valid number as returned by Number(), but would be seen in logic checks as falsy. Corrected by adding custom true/false check function to logic checks as needed.
+5. Cleaned up draft work, moving to web app creation
+
+== Web app ==
+
 
 
 

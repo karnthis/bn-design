@@ -1,37 +1,5 @@
-const rounds = 11
-const seek = 30010
-const debug = true
-
 // Globals
 const Hash = {max: 0, 0: 0, 1: 1}
-
-// Testing
-// console.log(fiboFor(1))
-// console.log(fiboFor(2))
-// console.log(fiboFor(3))
-// console.log(fiboFor(6))
-
-// fiboStopwatch(10)
-
-async function test() {
-    await fiboStopwatch(100)
-    await fiboStopwatch(101)
-}
-// test()
-
-async function testFind() {
-    await fiboFor(10)
-    console.log(await fiboPosFind(8))
-    console.log(await fiboPosFind(55))
-    console.log(await fiboPosFind(0))
-    console.log(await fiboPosFind(1))
-}
-testFind()
-
-// console.log(fiboFind(0))
-
-
-
 
 // Functions
 async function fiboFor(position) {
@@ -102,19 +70,6 @@ function fiboMath(value) {
     return Math.sqrt(value - 4) % 1 === 0 || Math.sqrt(value + 4) % 1 === 0
 }
 
-async function fiboStopwatch(rounds) {
-    console.log(`Difficulty : ${rounds}`)
-    const start = Date.now()
-    const result = await fiboFor(rounds)
-    const end = Date.now()
-    console.log(`Result : ${result}`)
-    console.log(`Duration : ${end - start}`)
-}
-
 function higherTruth(value) {
     return value === 0 || !!value
-}
-
-function dead() {
-
 }
