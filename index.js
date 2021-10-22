@@ -17,7 +17,18 @@ async function test() {
     await fiboStopwatch(100)
     await fiboStopwatch(101)
 }
-test()
+// test()
+
+async function testFind() {
+    await fiboWhile(10)
+    console.log(fiboFind(8))
+    console.log(fiboFind(55))
+}
+testFind()
+
+// console.log(fiboFind(0))
+
+
 
 
 // Functions
@@ -42,8 +53,45 @@ async function fiboWhile(position) {
             return hash[working]
         }
     } else {
-        return "Input must be a number"
+        return `${position} is not a valid submission`
     }
+}
+
+function fiboIsIt(value) {
+    const safeValue = Number(value)
+    if (safeValue) {
+        const coreValue = 5 * safeValue * safeValue
+        if (fiboMath(coreValue)) {
+            return `${safeValue} is a Fibonacci number`
+        } else {
+            return `${safeValue} is not a Fibonacci number`
+        }
+    } else {
+        return `${value} is not a valid submission`
+    }
+}
+
+function fiboPosFind(toFind) {
+    const hash = Hash || {max: 1, 0: 0, 1: 1}
+    const safeToFind = Number(toFind)
+
+    if (safeToFind && fiboMath(5 * safeToFind * safeToFind)) {
+        if (safeToFind === 1) {
+            return 'Your number is 1, which is both position 1 and 2'
+        } else if (safeToFind === hash[(hash.max)]) {
+            return `Your number is position : ${hash.max}`
+        } else {
+            return 'find logic goes here'
+        }
+    } else if (safeToFind) {
+        return `${safeToFind} is not a Fibonacci number`
+    } else {
+        return `${toFind} is not a valid submission`
+    }
+}
+
+function fiboMath(value) {
+    return Math.sqrt(value - 4) % 1 === 0 || Math.sqrt(value + 4) % 1 === 0
 }
 
 async function fiboStopwatch(rounds) {

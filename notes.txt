@@ -13,7 +13,10 @@
 6. Basic tests show expected output is received
 7. Time trials confirm function works to spec, and progress is stored between runs in the same session
 
-
+== Expansion ==
+1. Decided to add functions to determine if an input is a fibonacci number, or to determine the position in a fibonacci sequence
+2. Researched methods of identifying fibonacci numbers
+3. Implemented a couple of methods and helper methods to support planned functionality
 
 == chicken scratch ==
 
