@@ -11,6 +11,8 @@
 4. Scrapped initial design and switched to loop and hash object combo
 5. Took some basic steps to ensure type safety with the function input so it is always an int
 6. Basic tests show expected output is received
+7. Time trials confirm function works to spec, and progress is stored between runs in the same session
+
 
 
 == chicken scratch ==
@@ -18,3 +20,11 @@
 F(0) = 0 and F(1) = 1 
 (Ex]   F(3) = F(2) + F(1) = 1 + 1 = 2
 F(6) = F(5) + F(4) = 5 + 3 = 8
+
+terminal results
+Difficulty : 100
+Result : 354224848179262000000
+Duration : 1224
+Difficulty : 101
+Result : 573147844013817200000
+Duration : 25
