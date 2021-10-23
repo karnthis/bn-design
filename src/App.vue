@@ -10,7 +10,7 @@
         <v-btn @click="fiboPosFind"
           >What is the position in the sequence?</v-btn
         >
-        <v-btn @click="fiboFor">What is the number at the position?</v-btn>
+        <v-btn @click="fiboForVue">What is the number at the position?</v-btn>
       </div>
     </v-container>
   </v-app>
@@ -32,37 +32,31 @@ export default {
     output: "",
   }),
   methods: {
-    async fiboFor(index, trigger) {
-      const hash = this.Hash || { max: 1, 0: 0, 1: 1 };
-      const safePosition = Number(index) || Number(this.input);
-      if (this.higherTruth(safePosition)) {
-        const working = Math.max(0, safePosition);
+    async fiboForVue() {
+      this.output = await this.fiboFor(this.input)
+    },
+    async fiboFor(position) {
+      const hash = this.Hash || {max: 1, 0: 0, 1: 1}
+    const safePosition = Number(position)
+    if (this.higherTruth(safePosition)) {
+        const working = Math.max(0, safePosition)
         if (working <= hash.max) {
-          if (trigger) {
-            return hash[working];
-          } else {
-            this.output = hash[working];
-          }
+            return hash[working]
         } else {
-          for (let i = hash.max; i <= working; i++) {
-            if (i <= 1) {
-              continue;
+            for (let i = hash.max; i <= working; i++) {
+                if (i <= 1) {
+                    continue
+                }
+                hash[i] = hash[i - 1] + hash[i - 2]
+                this.Hash[i] = hash[i]
             }
-            hash[i] = hash[i - 1] + hash[i - 2];
-            this.Hash[i] = hash[i];
-          }
-          hash.max = working;
-          this.Hash.max = working;
-          if (trigger) {
-            return hash[working];
-          } else {
-            this.output = hash[working];
-          }
+            hash.max = working
+            this.Hash.max = working
+            return hash[working]
         }
-      } else {
-        this.output = `${this.input} is not a valid submission`;
-        return;
-      }
+    } else {
+        return `${position} is not a valid submission`
+    }
     },
     fiboIsIt() {
       const safeValue = Number(this.input);
@@ -99,7 +93,7 @@ export default {
           let curr = 0;
           while (curr !== safeToFind) {
             i++;
-            curr = await this.fiboFor(i, true);
+            curr = await this.fiboFor(i);
           }
           this.output = `Your number is position : ${i}`;
           return;
