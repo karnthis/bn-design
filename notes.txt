@@ -24,7 +24,9 @@
 1. Core functions file index.js moved to /orig dir to preserve it for easy reference/copypasta.
 2. Vue 2 scaffold created because Vuetify still does not support Vue 3.
 3. Had a lightbulb moment that I was overcomplicating fiboFor. Changed to using fiboFor with fiboForVue wrapper.
+4. Styling/interface is complete. CSS was (as it always is) a major pain, with a simple (as always) solution.
 
+Final version can be found here : https://ritemeow.com/fibowizard/
 
 
 
